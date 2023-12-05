@@ -1,0 +1,48 @@
+<!-- 
+    No seu projeto, você deverá listar apenas as tarefas que não estiverem com o status concluir tarefa.
+    Neste exemplo fiz algo parecido, criei um filtro para que liste apenas pessoas que não sejam do status colegaDeTrabalho = true.
+    Você pode utilizar um tipo lógico (boolean) para listar as tarefas que não foram concluídas.
+    Para criar um pipe (lógica para filtrar dados), utilize o comando: ng g p nome-filtro
+-->
+
+<!-- Filtragem -->
+<form>
+    <label for="filtroNome">Nome:</label>
+    <input id="filtroNome" [(ngModel)]="filtros.nome" name="filtroNome" />
+
+    <label for="filtroIdade">Idade:</label>
+    <input id="filtroIdade" [(ngModel)]="filtros.idade" name="filtroIdade" />
+
+    <label for="filtroEstado">Estado:</label>
+    <input id="filtroEstado" [(ngModel)]="filtros.estado" name="filtroEstado" />
+
+    <label for="filtroCidade">Cidade:</label>
+    <input id="filtroCidade" [(ngModel)]="filtros.cidade" name="filtroCidade" />
+</form>
+
+
+<!-- Título -->
+<h1>Exibir apenas pessoas que NÃO são colegas de trabalho</h1>
+
+<!-- Listagem de todos que não são colegas de trabalho -->
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Estado</th>
+            <th>Cidade</th>
+            <th>Colega de trabalho</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let p of pessoas.filter(pesquisa)| filtrarColegaDeTrabalho; let indice = index">
+            <td>{{p.nome}}</td>
+            <td>{{p.idade}}</td>
+            <td>{{p.estado}}</td>
+            <td>{{p.cidade}}</td>
+            <td><button (click)="marcarComoColegaDeTrabalho(indice)">Marcar como colega de trabalho</button></td>
+        </tr>
+    </tbody>
+</table>
